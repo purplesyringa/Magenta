@@ -1,0 +1,27 @@
+html, body {
+	margin: 0;
+	background-color: #DB0F4F;
+	color: #FFF;
+	font-family: Arial, sans-serif;
+	font-size: 20px;
+}
+
+p, h1, h2, h3 {
+	width: 768px;
+	margin: 0 auto;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+	margin: 1em auto 0.5em;
+	color: #FAA;
+	text-align: center;
+}
+h1 {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 3rem;
+	font-weight: bold;
+}
+h2 {
+	font-size: 2rem;
+}
