@@ -9,7 +9,7 @@ class ConnectionManager:
         self.onMessage = Event("onMessage")
         # Create listeners
         self.udp = UDPBroadcastTunnel(udp_port)
-        self.tcp_listener = TCPListener(tcp_port)
+        self.tcp = TCPListener(tcp_port)
         # Tunnels
         self.tunnels = {}
 
@@ -18,12 +18,12 @@ class ConnectionManager:
         self.udp.onMessage.subscribe(lambda *arg: self.onMessage(*arg))
         await curio.spawn(self.udp.listen)
         # Set up TCP
-        self.tcp_listener.onMessage.subscribe(lambda *arg: self.onMessage(*arg))
-        await curio.spawn(self.tcp_listener.listen)
+        self.tcp.onMessage.subscribe(lambda *arg: self.onMessage(*arg))
+        await curio.spawn(self.tcp.listen)
 
     async def close(self):
         await self.udp.close()
-        await self.tcp_listener.close()
+        await self.tcp.close()
         tunnels = self.tunnels
         self.tunnels.clear()
         for tunnel in tunnels.values():

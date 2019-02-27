@@ -1,1 +1,3 @@
 curio
+chalk
+atomicwrites
