@@ -43,7 +43,9 @@ class DHT:
 
     def onAnnounceReceive(self, new_peer_info):
         if new_peer_info in self.peer_table:
-            # Already here
+            # Already here, append buckets
+            peer_info = self.peer_table[self.peer_table.index(new_peer_info)]
+            peer_info.addBuckets(new_peer_info.buckets)
             return
 
         logger.info(f"Discovered new peer: {new_peer_info}")

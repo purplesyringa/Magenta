@@ -39,7 +39,11 @@ async def main():
 
     logging.info("Creating peer info")
     network_id = bytes((random.randint(0, 255) for _ in range(32)))
-    peer_info = PeerInfo(ip="127.0.0.1", tcp_port=tcp_port, id=network_id)
+    peer_info = PeerInfo(
+        ip="127.0.0.1", tcp_port=tcp_port,
+        id=network_id,
+        buckets=set()
+    )
 
     logging.info("Creating UDP announcer")
     udp_announcer = UDPAnnouncer(con_man, peer_info)
