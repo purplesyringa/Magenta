@@ -5,11 +5,12 @@ async def main():
     print("Welcome!")
     print("--------")
 
+    udp_group = input("UDP group: ")
     udp_port = int(input("UDP port: "))
     tcp_port = int(input("TCP port: "))
     nickname = input("Your name: ")
 
-    conn = ConnectionManager(udp_port, tcp_port)
+    conn = ConnectionManager(udp_group, udp_port, tcp_port)
 
     await conn.start()
     print("Listening...")
