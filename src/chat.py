@@ -19,19 +19,8 @@ async def main():
     conn.onMessage.subscribe(onMessage)
 
     try:
-        import msvcrt
-        import sys
         while True:
-            message = b""
-            while b"\r" not in message:
-                await curio.sleep(0.001)
-                if msvcrt.kbhit():
-                    c = msvcrt.getch()
-                    sys.stdout.write(c.decode("utf8"))
-                    sys.stdout.flush()
-                    message += c
-            message = message.decode("utf8").replace("\r", "")
-
+            message = (await curio.run_in_thread(input)).replace("\r", "")
             await conn.broadcast(f"{nickname}: {message}".encode("utf8"))
     except KeyboardInterrupt:
         print("Exitting...")
